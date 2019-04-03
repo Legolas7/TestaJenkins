@@ -1,3 +1,0 @@
-#!/bin/sh
-
-curl http://192.168.1.215:8081/job/SlavJobbTest/build?token=1234

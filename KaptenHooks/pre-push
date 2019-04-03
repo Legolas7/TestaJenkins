@@ -1,0 +1,16 @@
+#!/bin/sh
+
+# Save the name of the branch that HEAD is currently at to a variable so it can
+# be sent as a parameter to the Jenkins job.
+branch_name="$(git rev-parse --abbrev-ref HEAD)"
+
+# Strip Issue#
+branch_name="${branch_name:6}"
+
+# Check if keyword for starting tests was in the latest commit message.
+run_tests_keyword="$(git show --grep=RUNTESTS)"
+
+if [ ! -z "$run_tests_keyword" ];
+then
+	curl "localhost:8081/job/checkout_latest_changes/buildWithParameters?token=0000&current_branch=${branch_name}"
+fi
