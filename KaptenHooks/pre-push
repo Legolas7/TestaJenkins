@@ -17,9 +17,5 @@ then
 	curl "localhost:8081/job/Kompilera/lastBuild/consoleText"
 	sleep 40
 	curl "localhost:8081/job/Enhetstester/lastBuild/consoleText"
-	sleep 7
-	curl "localhost:8081/job/Mjukvarunedladdning/lastBuild/consoleText"
-	sleep 40
-	curl "localhost:8081/job/RobotFramework/lastBuild/consoleText"
 	
 fi
