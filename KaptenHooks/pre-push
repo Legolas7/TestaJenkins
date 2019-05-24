@@ -23,7 +23,7 @@ then
 	do
 		#sleep 1
 		# building="$(curl --silent "localhost/job/Kompilera/lastBuild/api/json" | grep building\":false)"
-		IS_DONE_BUILDING=$(curl --silent "localhost/job/Kompilera/lastBuild/api/json" | grep -c building\":false)
+		IS_DONE_BUILDING=$(curl --silent "localhost:8081/job/Kompilera/lastBuild/api/json" | grep -c building\":false)
 		echo $IS_DONE_BUILDING
 	done
 	curl "localhost:8081/job/Kompilera/lastBuild/consoleText"
