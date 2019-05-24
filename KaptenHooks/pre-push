@@ -13,4 +13,10 @@ run_tests_keyword="$(git show --grep=RUNTESTS)"
 if [ ! -z "$run_tests_keyword" ];
 then
 	curl "localhost:8081/job/Checka_ut_andringar/buildWithParameters?token=0000&current_branch=${branch_name}"
+	sleep 1m
+	curl "localhost:8081/job/Kompilera/lastBuild/consoleText"
+	curl "localhost:8081/job/Enhetstester/lastBuild/consoleText"
+	curl "localhost:8081/job/Mjukvarunedladdning/lastBuild/consoleText"
+	curl "localhost:8081/job/RobotFramework/lastBuild/consoleText"
+	
 fi
