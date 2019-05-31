@@ -18,11 +18,16 @@ then
 	IS_DONE_BUILDING=0
 	while [ $IS_DONE_BUILDING -eq 0 ]
 	do
-		#sleep 1
 		IS_DONE_BUILDING=$(curl --silent "localhost:8081/job/Kompilera/lastBuild/api/json" | grep -c building\":false)
 	done
 	curl "localhost:8081/job/Kompilera/lastBuild/consoleText"
-	#sleep 40
-	#curl "localhost:8081/job/Enhetstester/lastBuild/consoleText"
+	sleep 2
+	
+	IS_DONE_BUILDING=0
+	while [ $IS_DONE_BUILDING -eq 0 ]
+	do
+		IS_DONE_BUILDING=$(curl --silent "localhost:8081/job/Enhetstester/lastBuild/api/json" | grep -c building\":false)
+	done
+	curl "localhost:8081/job/Enhetstester/lastBuild/consoleText"
 	
 fi
