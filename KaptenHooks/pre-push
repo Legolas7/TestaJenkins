@@ -13,18 +13,13 @@ run_tests_keyword="$(git show --grep=RUNTESTS)"
 if [ ! -z "$run_tests_keyword" ];
 then
 	curl --silent "localhost:8081/job/Checka_ut_andringar/buildWithParameters?token=0000&current_branch=${branch_name}"
-	sleep 10
-	
-	#building="$(curl --silent "localhost/job/Kompilera/lastBuild/api/json" | grep building\":false)"
+	sleep 20
 	
 	IS_DONE_BUILDING=0
-	# while [ -z "$building" ]
 	while [ $IS_DONE_BUILDING -eq 0 ]
 	do
 		#sleep 1
-		# building="$(curl --silent "localhost/job/Kompilera/lastBuild/api/json" | grep building\":false)"
 		IS_DONE_BUILDING=$(curl --silent "localhost:8081/job/Kompilera/lastBuild/api/json" | grep -c building\":false)
-		echo $IS_DONE_BUILDING
 	done
 	curl "localhost:8081/job/Kompilera/lastBuild/consoleText"
 	#sleep 40
